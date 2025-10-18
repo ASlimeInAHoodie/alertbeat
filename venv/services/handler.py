@@ -18,7 +18,7 @@
     When creating an integration, it *must* have the following:
      - Have a class object that can be initialised in this file's `init(self)`
      - The class object has a send_message(self, dict) function that:
-        - Handles a dictionary 
+        - Handles a dictionary
      - The class object has a send_message(self, dict) function that returns a Response for OK or a string for an error
 
     __ INTEGRATIONS __
@@ -37,7 +37,7 @@ from requests import Response
 def send_messages(message: dict):
     for service in services:
         response: Exception|Response|None = service.send_message(message)
-        if type(response) is Exception: raise Exception(response)
+        if isinstance(response, BaseException): logger(f"Service Send Message failed: {response}")
         elif response == None: logger(f"Severity too low for service. Skipping", 0)
         else: logger(f"Request successfully sent to {response.url}", 0)
 #endregion
@@ -55,13 +55,13 @@ def update_config(initial: bool = False):
     global integrations # DO NOT EDIT
     # update your services here
     importlib.reload(discord)
-    
+
     # Append an initialised object of each service to use here:
     services = [
         discord.Discord_Webhook()
     ]
 
-    # reload your integration classes here: 
+    # reload your integration classes here:
     importlib.reload(nginx)
     importlib.reload(sshd_session)
 
