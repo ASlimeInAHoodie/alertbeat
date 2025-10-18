@@ -44,7 +44,7 @@ VIRTUALENV=$(which virtualenv)
 # All commands ran with user:
 sudo -u "$USERNAME" "$VIRTUALENV" "/home/$USERNAME/app"
 # Get the app venv
-sudo -u "$USERNAME" curl "$ZIP_URL" -o "/home/$USERNAME/venv.tar.gz"
+sudo -u "$USERNAME" wget "$ZIP_URL" -O "/home/$USERNAME/venv.tar.gz"
 # Unpack
 sudo -u "$USERNAME" tar -xzvf "/home/$USERNAME/venv.tar.gz" -C "/home/$USERNAME/app"
 # Remove
