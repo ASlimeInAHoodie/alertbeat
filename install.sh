@@ -40,7 +40,7 @@ echo "User $USERNAME created."
 
 ## VIRTUAL ENVIRONMENT
 # Become new user
-su - "$USERNAME"
+sudo -u "$USERNAME" /bin/bash
 # All commands until exit are ran as new user:
 # Go to home
 cd ~
