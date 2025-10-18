@@ -4,7 +4,7 @@ ALERTBEAT's purpose is to read log files at regular interval, read new logs, fil
 ## Installation
 The simplest method is to run the bash script, or follow along with it - it's a very simple script:
 ```bash
-curl "https://raw.githubusercontent.com/ASlimeInAHoodie/ALERTBEAT/install.sh" -o /tmp/install_alertbeat.sh && sudo /bin/bash /tmp/install_alertbeat.sh
+curl "https://raw.githubusercontent.com/ASlimeInAHoodie/alertbeat/refs/heads/main/install.sh" -o /tmp/install_alertbeat.sh && sudo /bin/bash /tmp/install_alertbeat.sh
 ```
 ## Alert
 An alert defined in ALERTBEAT is a dictionary object with the following properties:
