@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## CONFIG
-ZIP_URL="https://raw.githubusercontent.com/ASlimeInAHoodie/ALERTBEAT/venv.tar.gz"
+ZIP_URL="https://github.com/ASlimeInAHoodie/alertbeat/blob/main/venv.tar.gz"
 USERNAME="alertbeat"
 
 ## PRIVILEGES
