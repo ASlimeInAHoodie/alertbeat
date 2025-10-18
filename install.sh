@@ -39,27 +39,18 @@ echo "User $USERNAME created."
 ##
 
 ## VIRTUAL ENVIRONMENT
-# Become new user
-sudo -u "$USERNAME" /bin/bash
-# All commands until exit are ran as new user:
-# Go to home
-cd ~
-# Generate virtual environment
-virtualenv app
-# Enter it
-cd app
-# Get venv
-curl "$ZIP_URL" -o venv.tar.gz
+# Get path to virtualenv
+VIRTUALENV=$(which virtualenv)
+# All commands ran with user:
+sudo -u "$USERNAME" "$VIRTUALENV" "/home/$USERNAME/app"
+# Get the app venv
+sudo -u "$USERNAME" curl "$ZIP_URL" -o "/home/$USERNAME/venv.tar.gz"
 # Unpack
-tar -xzvf venv.tar.gz
+sudo -u "$USERNAME" tar -xzvf "/home/$USERNAME/venv.tar.gz" -C "/home/$USERNAME/app"
 # Remove
-rm venv.tar.gz
-# Enter source
-source bin/activate
-# Install requirements
-pip install --requirement requirements.txt
-# return to root
-exit
+sudo -u "$USERNAME" rm "/home/$USERNAME/venv.tar.gz"
+# In source install requirements
+sudo -u "$USERNAME" bash -c "source /home/$USERNAME/app/bin/activate && pip install --requirement /home/$USERNAME/app/requirements.txt"
 
 ## SERVICE
 # Create service
@@ -77,6 +68,7 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 EOF
+
 # Reload daemon
 systemctl daemon-reload
 # Enable service
