@@ -29,19 +29,22 @@ def getFileSize() -> int:
     """Return size of file whilst saving to file too"""
     size = os.path.getsize(LOG_FILE_PATH)
     # Save to file
-    data = {}
-    with open(DATA_STORAGE_PATH, 'r') as file:
-        data = json.load(file)
+    try:
+        with open(DATA_STORAGE_PATH, 'r') as file:
+            data = json.load(file)
+    except: data = {}
     data[LOG_FILE_PATH] = size
     with open(DATA_STORAGE_PATH, 'w') as file:
         json.dump(data, file)
     return size
 
 def readSize() -> int:
-    with open(DATA_STORAGE_PATH, 'r') as file:
-        data = json.load(file)
-        if LOG_FILE_PATH not in data.keys(): return getFileSize()
-        return data[LOG_FILE_PATH]
+    try:
+        with open(DATA_STORAGE_PATH, 'r') as file:
+            data = json.load(file)
+            if LOG_FILE_PATH not in data.keys(): return getFileSize()
+            return data[LOG_FILE_PATH]
+    except: return 0
 
 class Log:
     def __init__(self,
